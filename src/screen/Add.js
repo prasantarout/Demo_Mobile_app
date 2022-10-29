@@ -10,6 +10,7 @@ import FlashMessage, {
     showMessage,
     hideMessage
   } from "react-native-flash-message";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 
@@ -18,24 +19,41 @@ const Add = ({props,navigation,route}) => {
     const { colors } = useTheme();
     const theme = useTheme();
     const [state,setState]=useState()
-    const [value,setValue]=useState({
-        
-        title:'',
+    const [itemData,setItemData]=useState({
+       title:'',
         body:''
     })
-   const addItem = (e) => {
-       
-        if (value.title === "" || value.body === "") {
-          alert("ALl the fields are mandatory!");
-          return;
+    const onChangeTitle = (value) => {
+      setItemData({ ...itemData, title: value });
+    };
+  
+    const onChangeBody = (value) => {
+      setItemData({ ...itemData,body: value });
+    };
+    
+    const AddItem=()=>{
+      if(itemData.title==='' && itemData.body===''){
+        Alert.alert('All fields are required')
+      }else{
+        fetch('https://jsonplaceholder.typicode.com/posts', {
+          method: 'POST',
+          body:JSON.stringify({
+            title:itemData.title,
+            body: itemData.body,
+            userId: 1,
+          }),
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+          },
+        }).then((response) => response.json())
+          .then((response) =>{
+            AsyncStorage.setItem('ITEM',JSON.stringify(response));
+            navigation.goBack('');
+          }).catch((error)=>{
+            console.log(error);
+          }) 
         }
-        setValue({ title: "", body: "" });
-        route.params.handleItem(value);
-        navigation.goBack('Tabs');
-        return () => {
-            setState({}); // This worked for me
-          };
-      }; 
+    }
    
       function handleBackButtonClick(){
         // console.log("back Pressed wow")
@@ -93,8 +111,7 @@ const Add = ({props,navigation,route}) => {
                name="Subject"
                placeholder="Add Title"
                style={styles.textInput}
-               value={value.title}
-               onChangeText={(e) =>setValue(e)}
+               onChangeText={(value) => onChangeTitle(value)}
                     />
                <Textarea
                  containerStyle={styles.textareaContainer}
@@ -103,8 +120,7 @@ const Add = ({props,navigation,route}) => {
                  placeholder={'type your body description 。。。'}
                  placeholderTextColor={'#c7c7c7'}
                  underlineColorAndroid={'transparent'}
-                 value={value.body}
-                 onChangeText={(e) =>setValue(e)}
+                 onChangeText={(value) => onChangeBody(value)}
              />
              
                    <TouchableOpacity style={{
@@ -118,7 +134,7 @@ const Add = ({props,navigation,route}) => {
                    width:width*0.9,
                    height:60
                    }}
-                   onPress={addItem}
+                 onPress={AddItem}
                    >
                      <Text style={{
                          textAlign:'center',

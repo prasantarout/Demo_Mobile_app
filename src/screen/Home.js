@@ -19,8 +19,8 @@ import SkeletonLoader from "react-native-skeleton-loader";
 const {height,width}=Dimensions.get('window')
 import actions from '../redux/actions'
 import { FloatingAction } from "react-native-floating-action";
-const Home = ({navigation}) => {
-  
+import AsyncStorage from '@react-native-async-storage/async-storage';
+const Home = ({navigation,route}) => {
      const { colors } = useTheme();
      const theme = useTheme();
      const [data, setData] = useState([])
@@ -38,22 +38,29 @@ const Home = ({navigation}) => {
     ]
  
   useEffect(() => {
-    getPost();
+    getDataItem();
    
   }, [])
  
- 
+  
+     
 
-  const getPost=async()=>{
+  const getDataItem=async()=>{
     try {
+      let dataValue;
+      await AsyncStorage.getItem('ITEM').then(response=>{
+        if(response!=null){
+          const data=JSON.parse(response);
+          dataValue=data;
+        }
+      })
       if (!loading && !isListEnd) {
         setLoading(true);
-        let res = await actions.getPosts();
-       
+        let res = await actions.getData();
         setData(res.data);
         if (res.data.length > 0) {
-          setOffset(offset + 1);
-          setData([...data, ...res.data]);
+         setOffset(offset + 1);
+          setData([...data,...res.data,dataValue]);
           setLoading(false);
         }else {
           setIsListEnd(true);
@@ -112,13 +119,13 @@ useEffect(() => {
 
   const renderItem = ({ item, index }) => {
       return (
-          <View style={[styles.boxView,{borderColor:colors.text}]}>
+          <View style={[styles.boxView,{borderColor:colors.text}]} key={index}>
              <SkeletonLoader type="rectangle" size={110} loading={loading} height={100} color='ffa433' highlightColor='#BFC9CA'>
              <Text style={[styles.heading,{color:colors.text}]}>{item.id}. {item.title}</Text>
               <Text style={{color:colors.text}}>{item.body}</Text>
              <View style={styles.btn}>
               <View style={styles.btnStyle}>
-                 <TouchableOpacity onPress={()=>deletePost(item.id)} >
+                <TouchableOpacity onPress={()=>deletePost(item.id)} >
                   <Text style={{color:'white'}}>DELETE</Text>
               </TouchableOpacity>
               </View>
@@ -132,7 +139,9 @@ useEffect(() => {
             </View>
       )
   }
-
+  const onEnd = () => {
+    Alert.alert('You Have Reached To List End...');
+  }
       const renderFooter = () => {
         return (
           // Footer View with Loader
@@ -162,20 +171,17 @@ useEffect(() => {
                 data={data}
                 ListFooterComponent={renderFooter}
                 renderItem={renderItem}
-                onEndReached={getPost}
+                onEndReached={onEnd}
                 onEndReachedThreshold={0.5}
-                keyExtractor={(_,i) => i.toString()}
-                ItemSeparatorComponent={() => <View style={{ marginBottom: 16 }} />}
+                keyExtractor={(item, id) => id.toString()}
+                style={{ paddingBottom:200 }}
+                ItemSeparatorComponent={() => <View style={{ marginBottom:20 }} />}
             />
         </SafeAreaView>
         <FloatingAction
          actions={action}
          onPressItem={() =>
-          navigation.navigate("Add", {
-          handleItem:(item) =>{setData(item),
-          console.log(item.title)
-          },
-         })}
+          navigation.navigate("Add")}
        />
     </View>
       );

@@ -12,39 +12,54 @@ import FlashMessage, {
   } from "react-native-flash-message";
 import  {Formik} from 'formik'
 import actions from '../redux/actions'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
 const Update = ({navigation,route}) => {
     const { colors } = useTheme();
     const theme = useTheme();
-  //  const {data}=route.params;
-   // console.log(data);
-    const [propsData,setPropsData] = useState(route.params.data);
-    const [title,setTitle]=useState('')
-    const [body,setBody]=useState('')
-    const Update = () => {
-    if (propsData.title === "" || propsData.body === "") {
-        alert("ALl the fields are mandatory!");
-        return;
-      }
-      setPropsData({ title: "", body: "" });
-      update();
-      navigation.goBack('Tabs');
-    }; 
-    const update = async (id) => {
-      try {
-          const res = await actions.updatePost(id)
-       
-          let arry = [...propsData]
-          let modifyArray = arry.map((val,i)=>{
-              if(val.id !== id){
-                  return val
-              }
-          })
-          setPropsData(modifyArray)
-      } catch (error) {
-          console.log("error raised", error)
-      }
+    const {data}=route.params;
+    console.log(data);
+   
+    const [itemData, setItemData] = useState({
+      title:data.title,
+      body: data.body,
+      id: data.id,
+      userId:data.userId,
+    });
+   
+    const onChangeTitle = (value) => {
+      setItemData({ ...itemData, title: value });
+    };
+  
+    const onChangeBody = (value) => {
+      setItemData({ ...itemData, body: value });
+    };
+    
+     const update =async() => {
+      debugger;
+      let object={
+        id:data.id,
+        title:itemData.title,
+        body:itemData.body,
+        userId:data.userId
+     }
+     
+    await axios.put(`https://jsonplaceholder.typicode.com/posts/${data.id}`,object)
+    .then((response)=>{
+      let data=response;
+      console.log(data);
+    }).catch((error)=>{
+      console.log(error);
+    })
   }
-
+  function UpdateData(){
+    if(itemData !=null && itemData!=undefined && itemData!=false){
+      update();
+      navigation.goBack('')
+    }else{
+      Alert.alert('All fields are required');
+    }
+  }
 
   function handleBackButtonClick(){
     // console.log("back Pressed wow")
@@ -100,8 +115,8 @@ const Update = ({navigation,route}) => {
                 name="Subject"
                 placeholder="Update Title"
                 style={styles.textInput}
-                value={propsData.title}
-                onChangeText={(text) =>setPropsData(text)}
+                value={itemData.title}
+                onChangeText={(value) => onChangeTitle(value)}
                     />
                 <Textarea
                   containerStyle={styles.textareaContainer}
@@ -110,8 +125,8 @@ const Update = ({navigation,route}) => {
                   placeholder={'type your body description 。。。'}
                   placeholderTextColor={'#c7c7c7'}
                   underlineColorAndroid={'transparent'}
-                  value={propsData.body}
-                 onChangeText={(e) =>setPropsData(e)}
+                  value={itemData.body}
+                  onChangeText={(value) => onChangeBody(value)}
               />
               
                     <TouchableOpacity style={{
@@ -125,7 +140,8 @@ const Update = ({navigation,route}) => {
                     width:width*0.9,
                     height:60
                     }}
-                    onPress={Update}
+                  onPress={UpdateData} 
+                
                     >
                       <Text style={{
                           textAlign:'center',
@@ -193,4 +209,4 @@ const styles = StyleSheet.create({
 });
 
 //make this component available to the app
-export default Update;
+export default Update

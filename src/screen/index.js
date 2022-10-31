@@ -1,12 +1,20 @@
-import Home from './Home'
-import SplashScreen from './SplashScreen'
-import Add from './Add'
-import Update from './Update'
-import Setting from './Setting'
-export {
+import Home from "./home/Home";
+import SplashScreen from "./splash/SplashScreen";
+import Setting from "./setting/Setting";
+import Starter from "./starter/Starter";
+import Register from "./register/Register";
+import ProductInfo from "./productInfo/ProductInfo";
+import AllOrder from "./allOrder/AllOrder";
+import MyCart from './cart/MyCart'
+import Success from "./success/Success";
+export{
     Home,
     SplashScreen,
-    Add,
-    Update,
-    Setting
+    Setting,
+    Starter,
+    Register,
+    ProductInfo,
+    AllOrder,
+    MyCart,
+    Success
 }

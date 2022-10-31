@@ -1,0 +1,196 @@
+export const Items = [
+    {
+      id: 1,
+      category: 'product',
+      productName: 'Water Shoes for Men and Women Quick-Dry Aqua Shoes for',
+      productPrice: 1799,
+      description:
+      `BRUTON No. 006 Men's Sports, Walking, Gym, Training, Running Shoes (Set of 2 Pair)`,
+      isOff: true,
+      offPercentage: 10,
+      productImage: require('../assets/images/28.png'),
+      isAvailable: true,
+      productImageList: [
+        require('../assets/images/28.png'),
+        require('../assets/images/28.png'),
+        require('../assets/images/28.png'),
+      ],
+    },
+    {
+      id: 2,
+      category: 'product',
+      productName: "Men's Refresh PRO Running Shoes",
+      productPrice: 1499,
+      description:
+      `BRUTON No. 006 Men's Sports, Walking, Gym, Training, Running Shoes (Set of 2 Pair)`,
+      isOff: false,
+      productImage: require('../assets/images/26.png'),
+      isAvailable: true,
+      productImageList: [
+        require('../assets/images/26.png'),
+        require('../assets/images/26.png'),
+        require('../assets/images/26.png'),
+      ],
+    },
+    {
+      id: 3,
+      category: 'accessory',
+      productName: 'Mens Sport Sneakers Shoes',
+      productPrice: 1999,
+      description:
+      `BRUTON No. 006 Men's Sports, Walking, Gym, Training, Running Shoes (Set of 2 Pair)`,
+      isOff: true,
+      offPercentage: 18,
+      productImage: require('../assets/images/27.png'),
+      isAvailable: true,
+      productImageList: [
+        require('../assets/images/27.png'),
+        require('../assets/images/27.png'),
+        require('../assets/images/27.png'),
+      ],
+    },
+    {
+      id: 4,
+      category: 'accessory',
+      productName: 'Mens 6069-02 Running Shoe',
+      productPrice: 399,
+      description:
+      `BRUTON No. 006 Men's Sports, Walking, Gym, Training, Running Shoes (Set of 2 Pair)`,
+      isOff: false,
+      productImage: require('../assets/images/22.png'),
+      isAvailable: true,
+      productImageList: [
+        require('../assets/images/22.png'),
+        require('../assets/images/22.png'),
+        require('../assets/images/22.png'),
+      ],
+    },
+    {
+      id: 5,
+      category: 'accessory',
+      productName: 'Mens Ultimate Ease - Everglide Range Walking Shoe',
+      productPrice: 1499,
+      description:
+      `BRUTON No. 006 Men's Sports, Walking, Gym, Training, Running Shoes (Set of 2 Pair)`,
+      isOff: false,
+      productImage: require('../assets/images/29.png'),
+      isAvailable: false,
+      productImageList: [
+        require('../assets/images/29.png'),
+        require('../assets/images/29.png'),
+        require('../assets/images/29.png'),
+      ],
+    },
+    {
+      id: 6,
+      category: 'accessory',
+      productName: 'Mens Wonder-13 Sports Running Shoes',
+      productPrice: 1299,
+      description:
+      `BRUTON No. 006 Men's Sports, Walking, Gym, Training, Running Shoes (Set of 2 Pair)`,
+      isOff: false,
+      productImage: require('../assets/images/23.png'),
+      isAvailable: true,
+      productImageList: [
+        require('../assets/images/23.png'),
+        require('../assets/images/23.png'),
+        require('../assets/images/23.png'),
+      ],
+    },
+    {
+        id: 7,
+        category: 'accessory',
+        productName: 'Mens Adivat M Running Shoes',
+        productPrice: 1299,
+        description:
+        `BRUTON No. 006 Men's Sports, Walking, Gym, Training, Running Shoes (Set of 2 Pair)`,
+        isOff: false,
+        productImage: require('../assets/images/25.png'),
+        isAvailable: true,
+        productImageList: [
+          require('../assets/images/25.png'),
+          require('../assets/images/25.png'),
+          require('../assets/images/25.png'),
+        ],
+      },
+      {
+        id: 8,
+        category: 'accessory',
+        productName: 'Mens Adivat M Running Shoes',
+        productPrice: 1299,
+        description:
+        `BRUTON No. 006 Men's Sports, Walking, Gym, Training, Running Shoes (Set of 2 Pair)`,
+        isOff: false,
+        productImage: require('../assets/images/3.png'),
+        isAvailable: true,
+        productImageList: [
+          require('../assets/images/3.png'),
+          require('../assets/images/3.png'),
+          require('../assets/images/3.png'),
+        ],
+      },
+      {
+        id: 9,
+        category: 'accessory',
+        productName: 'Mens Adivat M Running Shoes',
+        productPrice: 1299,
+        description:
+        `BRUTON No. 006 Men's Sports, Walking, Gym, Training, Running Shoes (Set of 2 Pair)`,
+        isOff: false,
+        productImage: require('../assets/images/19.png'),
+        isAvailable: true,
+        productImageList: [
+          require('../assets/images/19.png'),
+          require('../assets/images/19.png'),
+          require('../assets/images/19.png'),
+        ],
+      },
+      {
+        id: 10,
+        category: 'accessory',
+        productName: 'Mens Adivat M Running Shoes',
+        productPrice: 1299,
+        description:
+        `BRUTON No. 006 Men's Sports, Walking, Gym, Training, Running Shoes (Set of 2 Pair)`,
+        isOff: false,
+        productImage: require('../assets/images/10.png'),
+        isAvailable: true,
+        productImageList: [
+          require('../assets/images/10.png'),
+          require('../assets/images/10.png'),
+          require('../assets/images/10.png'),
+        ],
+      },
+      {
+        id: 11,
+        category: 'accessory',
+        productName: 'Mens Adivat M Running Shoes',
+        productPrice: 1299,
+        description:
+          `BRUTON No. 006 Men's Sports, Walking, Gym, Training, Running Shoes (Set of 2 Pair)`,
+        isOff: false,
+        productImage: require('../assets/images/20.png'),
+        isAvailable: true,
+        productImageList: [
+          require('../assets/images/20.png'),
+          require('../assets/images/20.png'),
+          require('../assets/images/20.png'),
+        ],
+      },
+      {
+        id: 12,
+        category: 'accessory',
+        productName: 'Mens Adivat M Running Shoes',
+        productPrice: 1299,
+        description:
+        `BRUTON No. 006 Men's Sports, Walking, Gym, Training, Running Shoes (Set of 2 Pair)`,
+        isOff: false,
+        productImage: require('../assets/images/5.png'),
+        isAvailable: true,
+        productImageList: [
+          require('../assets/images/5.png'),
+          require('../assets/images/5.png'),
+          require('../assets/images/5.png'),
+        ],
+      },
+  ];

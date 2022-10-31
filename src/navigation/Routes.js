@@ -1,5 +1,5 @@
 import React,{useContext} from 'react';
-import { SplashScreen,Setting,Add,Update } from '../screen';
+import { SplashScreen,Setting,Home, Starter, Register, ProductInfo,MyCart, AllOrder, Success } from '../screen';
  import { 
   NavigationContainer, 
   DefaultTheme as NavigationDefaultTheme,
@@ -15,6 +15,7 @@ import {
 import Tabs from './Tabs';
 
 import { AuthContext } from '../components/AuthContext';
+
 
 const Stack = createStackNavigator();
 
@@ -92,11 +93,15 @@ const authContext = React.useMemo(() => ({
         }}
       initialRouteName="SplashScreen"
       >
-          <Stack.Screen name="Splash" component={SplashScreen}/>
+        <Stack.Screen name="Splash" component={SplashScreen}/>
         <Stack.Screen  name="Tabs" component={Tabs} options={{headerShown:false}}/>
-        <Stack.Screen name="Setting" component={Setting} /> 
-        <Stack.Screen name="Update" component={Update} /> 
-        <Stack.Screen name="Add" component={Add} /> 
+        <Stack.Screen name="Setting" component={Setting} />
+        <Stack.Screen name="Starter" component={Starter} />
+        <Stack.Screen name="Register" component={Register} />
+        <Stack.Screen name="ProductInfo" component={ProductInfo} />
+        <Stack.Screen name="MyCart" component={MyCart} /> 
+        <Stack.Screen name="AllOrder" component={AllOrder} /> 
+        <Stack.Screen name="Success" component={Success} /> 
       </Stack.Navigator>
     </NavigationContainer>
  </AuthContext.Provider>

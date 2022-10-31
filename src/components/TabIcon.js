@@ -1,7 +1,7 @@
 //import liraries
 import React from 'react';
 import { View, Image} from 'react-native';
-import { COLORS } from '../constants';
+import {  COLOURS} from '../constants';
 
 const TabIcon = ({focused,icon}) => {
     return (
@@ -15,7 +15,7 @@ const TabIcon = ({focused,icon}) => {
             style={{
                 width:30,
                 height:30,
-                tintColor:focused ? COLORS.darkGreen : COLORS.lightLime
+                tintColor:focused ? COLOURS.darkGreen : COLOURS.lightLime
             }}
             />
             {focused &&
@@ -24,7 +24,7 @@ const TabIcon = ({focused,icon}) => {
                 position:'absolute',
                 left:0,
                 right:0,
-                backgroundColor:COLORS.darkGreen
+                backgroundColor:COLOURS.green
             }}
             />
             }

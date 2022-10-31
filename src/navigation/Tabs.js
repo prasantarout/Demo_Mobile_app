@@ -1,8 +1,8 @@
 import React from "react";
 import { View,} from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
-import {COLORS,FONTS,icon} from '../constants';
-import { Home,Setting} from "../screen"
+import {COLORS,COLOURS,FONTS,icon} from '../constants';
+import { Home,Setting,AllOrder} from "../screen"
 import {TabIcon} from '../components';
 const Tab = createBottomTabNavigator();
 
@@ -10,7 +10,7 @@ const Tabs = () => {
       return (
        <Tab.Navigator
         screenOptions={{
-            "tabBarShowLabel": false,
+            "tabBarShowLabel":true,
             safeAreaInsets: {
                top:0,
                 bottom:0,
@@ -23,14 +23,15 @@ const Tabs = () => {
                 bottom:0,
                 left:0,
                 right:0,
-                height:60,
-                elevation:5,
-                backgroundColor:COLORS.gray2,
+                height:70,
+                elevation:10,
+                backgroundColor:COLOURS.backgroundLight,
                 borderTopColor:"transparent",
              },
              tabBarLabelStyle: {
-                fontSize: 20,
-              },
+              fontSize:18,
+              color:'black'
+            },
         }}
          >
            <Tab.Screen
@@ -49,6 +50,15 @@ const Tabs = () => {
                 component={Setting}
                  options={{
                     tabBarIcon:({focused})=><TabIcon focused={focused} icon={icon.setting}/>,
+                    headerShown: false
+
+                }}
+            /> 
+             <Tab.Screen 
+                name="Orders"
+                component={AllOrder}
+                 options={{
+                    tabBarIcon:({focused})=><TabIcon focused={focused} icon={icon.order}/>,
                     headerShown: false
 
                 }}

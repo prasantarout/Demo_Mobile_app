@@ -1,7 +1,0 @@
-export default {
-    ADD: 'ADD',
-    DELETE:"DELETE",
-    UPDATE:"UPDATE",
-    CLEAR_REDUX_STATE: 'CLEAR_REDUX_STATE',
-    NO_INTERNET: 'NO_INTERNET'
-}

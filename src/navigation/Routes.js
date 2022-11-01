@@ -1,5 +1,5 @@
 import React,{useContext} from 'react';
-import { SplashScreen,Setting,Home, Starter, Register, ProductInfo,MyCart, AllOrder, Success } from '../screen';
+import { SplashScreen,Setting,Home, Starter, Register, ProductInfo,MyCart, AllOrder, Success,Add, Update } from '../screen';
  import { 
   NavigationContainer, 
   DefaultTheme as NavigationDefaultTheme,
@@ -101,7 +101,9 @@ const authContext = React.useMemo(() => ({
         <Stack.Screen name="ProductInfo" component={ProductInfo} />
         <Stack.Screen name="MyCart" component={MyCart} /> 
         <Stack.Screen name="AllOrder" component={AllOrder} /> 
-        <Stack.Screen name="Success" component={Success} /> 
+        <Stack.Screen name="Success" component={Success} />
+        <Stack.Screen name="Add" component={Add} /> 
+        <Stack.Screen name="Update" component={Update} /> 
       </Stack.Navigator>
     </NavigationContainer>
  </AuthContext.Provider>

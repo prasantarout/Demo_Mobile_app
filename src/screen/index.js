@@ -7,6 +7,8 @@ import ProductInfo from "./productInfo/ProductInfo";
 import AllOrder from "./allOrder/AllOrder";
 import MyCart from './cart/MyCart'
 import Success from "./success/Success";
+import Add from "./add/Add";
+import Update from "./update/Update";
 export{
     Home,
     SplashScreen,
@@ -16,5 +18,7 @@ export{
     ProductInfo,
     AllOrder,
     MyCart,
-    Success
+    Success,
+    Add,
+    Update
 }

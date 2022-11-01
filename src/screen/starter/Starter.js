@@ -1,103 +1,74 @@
 //import liraries
-import React, { Component, useState } from 'react';
-import { View, Text, StyleSheet,Dimensions,TouchableOpacity } from 'react-native';
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
-const {height,width}=Dimensions.get('window')
-// create a component
-const Starter = ({navigation}) => {
-    const [count,setCount]=useState(1);
+import React, { useEffect,useState } from 'react';
+import { View, Text, StyleSheet,TouchableOpacity, Image,FlatList,StatusBar, Dimensions } from 'react-native';
 
-    function Navigate(){
-        if(count==1){
-            navigation.navigate('Tabs')
-        }else if(count==2){
-            navigation.navigate('')
-        }
-    }
+import dataItem from '../../dataItem';
+import { SIZES } from '../../constants';
+const {height,width}=Dimensions.get('window')
+const Starter = ({navigation}) => {
+    
+    const [delay,setDelay]=useState(true);
+   
     return (
-        <View style={styles.container}>
-           <View style={styles.top}>
-            <Text style={{
-                 fontSize:30,
-                  color:'white',
-                  fontWeight:'bold',
-            }}>Register As</Text>
-           </View>
-           <View style={styles.bottom}>
-           <View style={styles.routes}>
-          <TouchableOpacity style={styles.card} 
-          onPress={()=>navigation.navigate('Register')}
-          >
-          <FontAwesome name="user"
-                 size={34} 
-                 color="blue" 
-                 style={{top:20,left:40}}
-                />
-            <Text style={{
-                fontSize:16,
-                top:22,
-                textAlign:'center',
-                color:'black',
-                fontWeight:'bold'
-                }}>User</Text>
-             </TouchableOpacity>
-            </View>
-            <View style={styles.routes}>
-          <TouchableOpacity style={styles.card} 
-            onPress={()=>navigation.navigate('Register')}
-          >
-          <FontAwesome name="lock"
-                 size={34} 
-                 color="blue" 
-                 style={{top:20,left:40}}
-                />
-            <Text style={{
-                fontSize:16,
-                top:22,
-                textAlign:'center',
-                color:'black',
-                fontWeight:'bold'
-                }}>Admin</Text>
-             </TouchableOpacity>
-            </View>
-          </View>
-        </View>
+     
+       <View style={{flex:1,backgroundColor:'blue'}}> 
+    <StatusBar barStyle='light-content' backgroundColor='blue'/>       
+     <Text style={{textAlign:'center',top:100,fontSize:SIZES.largeTitle,color:'white'}}>Register As</Text>
+    <View  style={{flex:1,justifyContent:'center',alignItems:'center',top:height*0.2,}}>
+    <FlatList
+     data={dataItem}
+     renderItem={ ({item}) =>
+     <TouchableOpacity onPress={()=>navigation.navigate('Register',{data:item.key})}
+      style={styles.GridViewContainer}
+      activeOpacity={0.4}
+      >
+           <Image resizeMode='cover' style={styles.image} source={item.logo}/> 
+        <Text style={{
+          
+            fontSize:20,
+            color:'black',
+            fontWeight:'bold',
+           textAlign:'center'
+        }}>{item.title}</Text>
+       </TouchableOpacity>
+     
+     }
+    />
+    </View>
+  </View>
+  
     );
 };
 
 // define your styles
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-       backgroundColor:'blue'
-    },
-    top:{
-        flex:1,
-        alignItems:'center',
-        justifyContent:'center',
-        bottom:height*0.1
-    },
-    bottom:{
-    bottom:height*0.45,
-    flexDirection:'row',
-    padding:10
+   
+      GridViewContainer: {
+       justifyContent: 'center',
+       alignItems: 'center',
+       
+       backgroundColor:"white",
+       borderRadius:10,
+       margin:20,
+       height:height*0.18,
+       elevation:10,
+       width:width*0.6,
+       shadowColor: '#000',
+       shadowOffset: { width: 0, height: 3 },
+       shadowOpacity: 0.5,
+       shadowRadius: 5,
+   },
+   image:{
+     width:width*0.2,
+     height:height*0.1,
+     alignItems:'center',
+     justifyContent:'center'
+   }
+     
+    
 
-    },
-    routes:{
-        flex:1,
-        flexDirection:'row',
 
-        },
-        card:{
-            width:width*0.27,
-            height:height*0.14,
-            backgroundColor:'#F2F3F4',
-            elevation:2,
-            left:8,
-            margin:30,
-            borderRadius:5
-        },
+ 
 });
 
-//make this component available to the app
 export default Starter;

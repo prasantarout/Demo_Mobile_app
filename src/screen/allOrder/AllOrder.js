@@ -6,15 +6,21 @@ const {height,width}=Dimensions.get('window')
 import { COLOURS } from '../../constants';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useTheme } from '@react-navigation/native';
-const AllOrder = () => {
+const AllOrder = ({navigation}) => {
     const paperTheme = useTheme();
     const { colors } = useTheme();
     const theme = useTheme();
   const [item,setItem]=useState([])
-    useEffect(()=>{
-        async function getItem(){
-          
-            let data;
+ 
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      getItem();
+    });
+  return unsubscribe;
+  }, [navigation]);
+    
+      async function getItem(){
+         let data;
          await AsyncStorage.getItem('cartItems').then(product=>{
             if(product!=null){
               const dataItem=JSON.parse(product);
@@ -23,9 +29,8 @@ const AllOrder = () => {
                 setItem(data);
             }
          })
-        }
-        getItem();
-    },[])
+    }
+  
 
     return (
         <View style={{

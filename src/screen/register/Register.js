@@ -1,9 +1,8 @@
 //import liraries
-import 'react-native-gesture-handler';
+
 import React,{useRef,useEffect,useState,useContext} from 'react';
 import { View, Text, StyleSheet,TextInput, Dimensions,Image,
          TouchableOpacity,StatusBar,ScrollView,Alert} from 'react-native';
-import {icons, images,COLORS} from '../../constants';
 const { width, height } = Dimensions.get('window');
 import  {Formik} from 'formik'
 import  LinearGradient  from 'react-native-linear-gradient';
@@ -12,8 +11,10 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-   const Register = ({navigation}) => {
-     const handleRegister=(value)=>{
+   const Register = ({navigation,route}) => {
+    const {data}=route.params;
+    console.log(data);
+      const handleRegister=(value)=>{
         console.log(value);
       if(value==undefined && value==null && value==false){
         Alert.alert('something went wrong')
@@ -31,7 +32,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
           <View style={styles.containerSVG}>
             <SvgTop/>
           <Formik
-           initialValues={{ name:'', email: '', password: '',}}
+           initialValues={{ name:'', email: '', password: '',id:data}}
            onSubmit={(value) => {
             if (value.email == '' || value.password == '' || value.name == '') {
                 Alert.alert('All fields are required')

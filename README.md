@@ -13,3 +13,10 @@ step-5 -also available the dark theme mode functionality .
 step-6 -user successfully purchasing item can view the all order in order section.
 
 step-7 -bottom tab navigator functionality also available in this application. 
+
+
+ ----------------------------------------------admin-----------------------------------------
+ 
+step-1.after splash screen redirect to starter screen where asking for register as user or admin.
+step-2 after register admin redirect to home screen..
+step-3.in home screen admin can post the product and edit product information.
